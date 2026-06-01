@@ -27,4 +27,18 @@ def cari_binary_search(data_laptop, target_id):
         else:
             high = mid - 1
             
-    return -1 # Jika tidak ditemukan
+    return -1 # Jika tidak ditemukan 
+
+def saring_linear_search(data_laptop, budget, kebutuhan, syarat):
+    """Mencari laptop yang masuk budget dan menghitung skor awal kecocokannya"""
+    hasil = []
+    for laptop in data_laptop:
+        if laptop.harga <= budget:
+            skor = 0
+            if laptop.kategori == kebutuhan: skor += 50
+            if laptop.ram >= syarat["min_ram"]: skor += 25
+            if laptop.storage >= syarat["min_storage"]: skor += 25
+            
+            if skor > 0:
+                hasil.append([skor, laptop])
+    return hasil
