@@ -114,3 +114,15 @@ def setup_style(self):
         style.map('Treeview', background=[('selected', '#007BFF')]) 
         style.configure("TNotebook", background=self.bg_color)
         style.configure("TFrame", background=self.bg_color)
+
+def setup_ui(self):
+        tab_control = ttk.Notebook(self.root)
+        self.tab_crud = ttk.Frame(tab_control)
+        self.tab_rekomendasi = ttk.Frame(tab_control)
+        
+        tab_control.add(self.tab_crud, text='Kelola Data (CRUD)')
+        tab_control.add(self.tab_rekomendasi, text='Cari Rekomendasi')
+        tab_control.pack(expand=1, fill="both", padx=10, pady=10)
+
+        self.setup_crud_tab()
+        self.setup_rekomendasi_tab()
