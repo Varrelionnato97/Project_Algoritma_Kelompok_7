@@ -126,3 +126,53 @@ def setup_ui(self):
 
         self.setup_crud_tab()
         self.setup_rekomendasi_tab()
+
+ def setup_crud_tab(self):
+        frame_input = tk.Frame(self.tab_crud, bg=self.bg_color)
+        frame_input.pack(pady=15)
+
+        def create_label(parent, text, row, col):
+            tk.Label(parent, text=text, bg=self.bg_color, font=('Helvetica', 9)).grid(row=row, column=col, sticky="w", pady=5, padx=5)
+
+        create_label(frame_input, "Merk:", 0, 0)
+        self.entry_merk = ttk.Entry(frame_input)
+        self.entry_merk.grid(row=0, column=1, pady=5, padx=5)
+
+        create_label(frame_input, "Tipe:", 1, 0)
+        self.entry_tipe = ttk.Entry(frame_input)
+        self.entry_tipe.grid(row=1, column=1, pady=5, padx=5)
+
+        create_label(frame_input, "RAM (GB):", 2, 0)
+        self.entry_ram = ttk.Entry(frame_input)
+        self.entry_ram.grid(row=2, column=1, pady=5, padx=5)
+
+        create_label(frame_input, "Storage (GB):", 3, 0)
+        self.entry_storage = ttk.Entry(frame_input)
+        self.entry_storage.grid(row=3, column=1, pady=5, padx=5)
+
+        create_label(frame_input, "Harga (Rp):", 4, 0)
+        self.entry_harga = ttk.Entry(frame_input)
+        self.entry_harga.grid(row=4, column=1, pady=5, padx=5)
+
+        create_label(frame_input, "Kategori:", 5, 0)
+        self.kategori_var = tk.StringVar(value="Office")
+        self.combo_kategori = ttk.Combobox(frame_input, textvariable=self.kategori_var, values=["Office", "Gaming", "Desain"], state="readonly")
+        self.combo_kategori.grid(row=5, column=1, pady=5, padx=5)
+
+        frame_btn = tk.Frame(self.tab_crud, bg=self.bg_color)
+        frame_btn.pack(pady=10)
+        
+        tk.Button(frame_btn, text="✚ Tambah Data", bg="#28A745", fg="white", font=('Helvetica', 9, 'bold'), relief="flat", padx=10, command=self.action_create).pack(side=tk.LEFT, padx=5)
+        tk.Button(frame_btn, text="📝 Ubah Data", bg="#17A2B8", fg="white", font=('Helvetica', 9, 'bold'), relief="flat", padx=10, command=self.action_update).pack(side=tk.LEFT, padx=5)
+        tk.Button(frame_btn, text="✖ Hapus Data", bg="#DC3545", fg="white", font=('Helvetica', 9, 'bold'), relief="flat", padx=10, command=self.action_delete).pack(side=tk.LEFT, padx=5)
+        tk.Button(frame_btn, text="⟲ Undo Hapus", bg="#FFC107", fg="black", font=('Helvetica', 9, 'bold'), relief="flat", padx=10, command=self.action_undo).pack(side=tk.LEFT, padx=5)
+
+        columns = ("ID", "Merk", "Tipe", "RAM", "Storage", "Harga", "Kategori")
+        self.tree = ttk.Treeview(self.tab_crud, columns=columns, show="headings")
+        for col in columns:
+            self.tree.heading(col, text=col)
+            self.tree.column(col, width=90, anchor="center")
+        self.tree.pack(pady=10, fill=tk.BOTH, expand=True, padx=10)
+        
+        self.tree.bind("<<TreeviewSelect>>", self.on_table_click)
+
