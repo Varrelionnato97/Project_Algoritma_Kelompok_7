@@ -82,3 +82,26 @@ class RekomendasiLaptopApp:
         self.setup_style()
         self.setup_ui()
         self.load_data()
+        
+    def load_data(self):
+        if os.path.exists(self.filename):
+            with open(self.filename, mode='r', newline='', encoding='utf-8') as file:
+                reader = csv.reader(file)
+                for row in reader:
+                    if len(row) == 7:
+                        id_laptop, merk, tipe, ram, storage, harga, kategori = int(row[0]), row[1], row[2], int(row[3]), int(row[4]), int(row[5]), row[6]
+                        laptop_baru = Laptop(id_laptop, merk, tipe, ram, storage, harga, kategori)
+                        self.data_laptop.append(laptop_baru)
+                        if id_laptop >= self.counter_id:
+                            self.counter_id = id_laptop + 1
+            self.refresh_table()
+        else:
+            self.create_laptop("ASUS", "ROG", 16, 1000, 20000000, "Gaming")
+            self.create_laptop("Acer", "Swift", 4, 256, 6000000, "Office")
+            self.create_laptop("Lenovo", "Thinkpad", 8, 512, 12000000, "Office")
+    
+    def save_data(self):
+        with open(self.filename, mode='w', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+            for laptop in self.data_laptop:
+                writer.writerow([laptop.id, laptop.merk, laptop.tipe, laptop.ram, laptop.storage, laptop.harga, laptop.kategori])
