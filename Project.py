@@ -42,3 +42,16 @@ def saring_linear_search(data_laptop, budget, kebutuhan, syarat):
             if skor > 0:
                 hasil.append([skor, laptop])
     return hasil
+
+def urutkan_selection_sort(hasil_rekomendasi):
+    """Mengurutkan daftar rekomendasi dari Skor Tertinggi ke Terendah (Descending)"""
+    n = len(hasil_rekomendasi)
+    for i in range(n):
+        max_idx = i
+        for j in range(i + 1, n):
+            if hasil_rekomendasi[j][0] > hasil_rekomendasi[max_idx][0]:
+                max_idx = j
+        # Tukar posisi
+        hasil_rekomendasi[i], hasil_rekomendasi[max_idx] = hasil_rekomendasi[max_idx], hasil_rekomendasi[i]
+        
+    return hasil_rekomendasi
