@@ -105,3 +105,12 @@ class RekomendasiLaptopApp:
             writer = csv.writer(file)
             for laptop in self.data_laptop:
                 writer.writerow([laptop.id, laptop.merk, laptop.tipe, laptop.ram, laptop.storage, laptop.harga, laptop.kategori])
+    
+def setup_style(self):
+        style = ttk.Style()
+        style.theme_use('clam')
+        style.configure("Treeview", background="#FFFFFF", foreground="#333333", rowheight=25, fieldbackground="#FFFFFF")
+        style.configure("Treeview.Heading", font=('Helvetica', 9, 'bold'), background="#E1E8ED")
+        style.map('Treeview', background=[('selected', '#007BFF')]) 
+        style.configure("TNotebook", background=self.bg_color)
+        style.configure("TFrame", background=self.bg_color)
