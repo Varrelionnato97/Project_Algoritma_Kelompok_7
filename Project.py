@@ -227,3 +227,30 @@ def on_table_click(self, event):
         harga_clean = str(row_data[5]).replace("Rp ", "").replace(",", "")
         self.entry_harga.delete(0, tk.END); self.entry_harga.insert(0, harga_clean)
         self.kategori_var.set(row_data[6])
+
+def create_laptop(self, merk, tipe, ram, storage, harga, kategori):
+        laptop_baru = Laptop(self.counter_id, merk, tipe, ram, storage, harga, kategori)
+        self.data_laptop.append(laptop_baru)
+        self.counter_id += 1
+        
+        self.save_data() # Simpan data setelah ditambah
+        self.refresh_table()
+
+def action_create(self):
+        merk = self.entry_merk.get().strip()
+        tipe = self.entry_tipe.get().strip()
+        ram = self.entry_ram.get().strip()
+        storage = self.entry_storage.get().strip()
+        harga = self.entry_harga.get().strip()
+        kategori = self.kategori_var.get().strip()
+
+        if not (merk and tipe and ram and storage and harga and kategori):
+            messagebox.showwarning("Peringatan", "Semua kolom data wajib diisi, tidak boleh ada yang kosong!")
+            return 
+
+        try:
+            self.create_laptop(merk, tipe, ram, storage, harga, kategori)
+            messagebox.showinfo("Sukses", "Data berhasil ditambahkan dan disimpan permanen!")
+            self.clear_form()
+        except ValueError:
+            messagebox.showerror("Error", "Gagal menyimpan! Input RAM, Storage, dan Harga wajib berupa angka murni (tanpa huruf/titik/koma).")
