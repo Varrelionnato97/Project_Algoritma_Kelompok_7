@@ -204,3 +204,10 @@ def setup_rekomendasi_tab(self):
             self.tree_rek.column(col, width=100, anchor="center")
         self.tree_rek.pack(pady=10, fill=tk.BOTH, expand=True, padx=10)
 
+def clear_form(self):
+        self.entry_merk.delete(0, tk.END)
+        self.entry_tipe.delete(0, tk.END)
+        self.entry_ram.delete(0, tk.END)
+        self.entry_storage.delete(0, tk.END)
+        self.entry_harga.delete(0, tk.END)
+        self.selected_laptop_id = None
