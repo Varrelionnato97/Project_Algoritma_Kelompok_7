@@ -227,3 +227,10 @@ def on_table_click(self, event):
         harga_clean = str(row_data[5]).replace("Rp ", "").replace(",", "")
         self.entry_harga.delete(0, tk.END); self.entry_harga.insert(0, harga_clean)
         self.kategori_var.set(row_data[6])
+
+def create_laptop(self, merk, tipe, ram, storage, harga, kategori):
+        laptop_baru = Laptop(self.counter_id, merk, tipe, ram, storage, harga, kategori)
+        self.data_laptop.append(laptop_baru)
+        self.counter_id += 1
+        self.save_data()
+        self.refresh_table()
