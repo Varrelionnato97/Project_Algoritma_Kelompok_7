@@ -55,3 +55,30 @@ def urutkan_selection_sort(hasil_rekomendasi):
         hasil_rekomendasi[i], hasil_rekomendasi[max_idx] = hasil_rekomendasi[max_idx], hasil_rekomendasi[i]
         
     return hasil_rekomendasi
+
+class RekomendasiLaptopApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Sistem Rekomendasi Laptop")
+        self.root.geometry("750x650")
+        
+        self.bg_color = "#F4F6F9" 
+        self.root.configure(bg=self.bg_color)
+        self.selected_laptop_id = None
+
+        self.data_laptop = [] 
+        self.stack_undo = [] 
+        self.counter_id = 1 
+        
+        # Nama file penyimpanan
+        self.filename = "data_laptop.csv"
+
+        self.kebutuhan_map = {
+            "Gaming": {"min_ram": 16, "min_storage": 512},
+            "Office": {"min_ram": 4, "min_storage": 256},
+            "Desain": {"min_ram": 8, "min_storage": 512}
+        }
+
+        self.setup_style()
+        self.setup_ui()
+        self.load_data()
