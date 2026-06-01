@@ -211,3 +211,19 @@ def clear_form(self):
         self.entry_storage.delete(0, tk.END)
         self.entry_harga.delete(0, tk.END)
         self.selected_laptop_id = None
+
+def on_table_click(self, event):
+        selected_item = self.tree.selection()
+        if not selected_item: return
+        
+        row_data = self.tree.item(selected_item)['values']
+        self.selected_laptop_id = int(row_data[0])
+        
+        self.entry_merk.delete(0, tk.END); self.entry_merk.insert(0, row_data[1])
+        self.entry_tipe.delete(0, tk.END); self.entry_tipe.insert(0, row_data[2])
+        self.entry_ram.delete(0, tk.END); self.entry_ram.insert(0, row_data[3])
+        self.entry_storage.delete(0, tk.END); self.entry_storage.insert(0, row_data[4])
+        
+        harga_clean = str(row_data[5]).replace("Rp ", "").replace(",", "")
+        self.entry_harga.delete(0, tk.END); self.entry_harga.insert(0, harga_clean)
+        self.kategori_var.set(row_data[6])
