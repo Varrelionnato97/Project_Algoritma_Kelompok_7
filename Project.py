@@ -254,3 +254,38 @@ def action_create(self):
             self.clear_form()
         except ValueError:
             messagebox.showerror("Error", "Gagal menyimpan! Input RAM, Storage, dan Harga wajib berupa angka murni (tanpa huruf/titik/koma).")
+
+def action_update(self):
+        if self.selected_laptop_id is None:
+            messagebox.showwarning("Peringatan", "Pilih data di tabel terlebih dahulu!")
+            return
+        
+        merk, tipe = self.entry_merk.get().strip(), self.entry_tipe.get().strip()
+        ram, storage = self.entry_ram.get().strip(), self.entry_storage.get().strip()
+        harga, kategori = self.entry_harga.get().strip(), self.kategori_var.get().strip()
+
+        if not (merk and tipe and ram and storage and harga and kategori):
+            messagebox.showwarning("Peringatan", "Semua kolom data wajib diisi!")
+            return
+        
+        try:
+            ram_int, storage_int, harga_int = int(ram), int(storage), int(harga)
+            
+            # MEMANGGIL FUNGSI BINARY SEARCH (Langsung dari file yang sama)
+            found_index = cari_binary_search(self.data_laptop, self.selected_laptop_id)
+
+            if found_index != -1:
+                self.data_laptop[found_index].merk = merk
+                self.data_laptop[found_index].tipe = tipe
+                self.data_laptop[found_index].ram = ram_int
+                self.data_laptop[found_index].storage = storage_int
+                self.data_laptop[found_index].harga = harga_int
+                self.data_laptop[found_index].kategori = kategori
+                
+                self.save_data()
+                self.refresh_table()
+                messagebox.showinfo("Sukses", "Data laptop diperbarui!")
+                self.clear_form()
+
+        except ValueError:
+            messagebox.showerror("Error", "RAM, Storage, dan Harga wajib angka!")
