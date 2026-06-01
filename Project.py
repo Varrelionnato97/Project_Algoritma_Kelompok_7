@@ -127,7 +127,7 @@ def setup_ui(self):
         self.setup_crud_tab()
         self.setup_rekomendasi_tab()
 
- def setup_crud_tab(self):
+def setup_crud_tab(self):
         frame_input = tk.Frame(self.tab_crud, bg=self.bg_color)
         frame_input.pack(pady=15)
 
@@ -175,4 +175,25 @@ def setup_ui(self):
         self.tree.pack(pady=10, fill=tk.BOTH, expand=True, padx=10)
         
         self.tree.bind("<<TreeviewSelect>>", self.on_table_click)
+
+def setup_rekomendasi_tab(self):
+        frame_filter = tk.Frame(self.tab_rekomendasi, bg=self.bg_color)
+        frame_filter.pack(pady=20)
+
+        tk.Label(frame_filter, text="Budget Maks:", bg=self.bg_color, fg="#DCDEDF", font=('Helvetica', 10, 'bold')).grid(row=0, column=0, padx=5, pady=5, sticky="w")
+        self.entry_budget = ttk.Entry(frame_filter, width=25)
+        self.entry_budget.grid(row=0, column=1, padx=5, pady=5)
+
+        tk.Label(frame_filter, text="Kebutuhan:", bg=self.bg_color, fg="#DCDEDF", font=('Helvetica', 10, 'bold')).grid(row=1, column=0, padx=5, pady=5, sticky="w")
+        self.rek_kategori_var = tk.StringVar(value="Office")
+        ttk.Combobox(frame_filter, textvariable=self.rek_kategori_var, values=["Office", "Gaming", "Desain"], state="readonly", width=22).grid(row=1, column=1, padx=5, pady=5)
+
+        tk.Button(frame_filter, text="🔍 Cari Rekomendasi", bg="#007BFF", fg="white", relief="flat", padx=20, pady=5, command=self.action_rekomendasi).grid(row=2, columnspan=2, pady=15)
+
+        columns = ("Skor", "Merk", "Tipe", "RAM", "Storage", "Harga")
+        self.tree_rek = ttk.Treeview(self.tab_rekomendasi, columns=columns, show="headings")
+        for col in columns:
+            self.tree_rek.heading(col, text=col)
+            self.tree_rek.column(col, width=100, anchor="center")
+        self.tree_rek.pack(pady=10, fill=tk.BOTH, expand=True, padx=10)
 
