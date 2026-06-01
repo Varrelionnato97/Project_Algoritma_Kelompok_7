@@ -99,6 +99,13 @@ class RekomendasiLaptopApp:
             self.create_laptop("ASUS", "ROG", 16, 1000, 20000000, "Gaming")
             self.create_laptop("Acer", "Swift", 4, 256, 6000000, "Office")
             self.create_laptop("Lenovo", "Thinkpad", 8, 512, 12000000, "Office")
+            self.create_laptop("Lenovo", "Thinkpad", 16, 512, 15000000, "Office")
+            self.create_laptop("Axioo", "Hype 5", 8, 256, 5000000, "Office")
+            self.create_laptop("MSI", "Katana", 16, 512, 16000000, "Gaming")
+            self.create_laptop("Dell", "XPS", 32, 1000, 35000000, "Design")
+            self.create_laptop("HP", "Victus", 8, 512, 12000000, "Gaming")
+            self.create_laptop("ASUS", "Zenbook", 16, 1000, 20000000, "Design")
+            self.create_laptop("Lenovo", "Legion", 32, 1000, 30000000, "Gaming")
     
     def save_data(self):
         with open(self.filename, mode='w', newline='', encoding='utf-8') as file:
