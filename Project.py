@@ -289,3 +289,35 @@ def action_update(self):
 
         except ValueError:
             messagebox.showerror("Error", "RAM, Storage, dan Harga wajib angka!")
+            
+def action_delete(self):
+        selected_item = self.tree.selection()
+        if not selected_item:
+            messagebox.showwarning("Peringatan", "Klik/pilih salah satu data di tabel yang ingin dihapus terlebih dahulu!")
+            return
+        
+        target_id = int(self.tree.item(selected_item)['values'][0])
+        
+        # 3. MATERI: Binary Search
+        low, high = 0, len(self.data_laptop) - 1
+        found_index = -1
+
+        while low <= high:
+            mid = (low + high) // 2
+            if self.data_laptop[mid].id == target_id:
+                found_index = mid
+                break
+            elif self.data_laptop[mid].id < target_id:
+                low = mid + 1
+            else:
+                high = mid - 1
+
+        if found_index != -1:
+            laptop_dihapus = self.data_laptop.pop(found_index)
+            self.stack_undo.append(laptop_dihapus)
+            
+            self.save_data() # Perbarui file penyimpanannya
+            self.refresh_table()
+            self.clear_form()
+            messagebox.showinfo("Sukses", f"Data '{laptop_dihapus.merk} {laptop_dihapus.tipe}' dihapus!\n\n(Bisa dibatalkan dengan tombol Undo)")
+
