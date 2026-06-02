@@ -62,7 +62,7 @@ class RekomendasiLaptopApp:
         self.root.title("Sistem Rekomendasi Laptop")
         self.root.geometry("750x650")
         
-        self.bg_color = "#F4F6F9" 
+        self.bg_color = "#272727" 
         self.root.configure(bg=self.bg_color)
         self.selected_laptop_id = None
 
@@ -116,9 +116,9 @@ class RekomendasiLaptopApp:
     def setup_style(self):
         style = ttk.Style()
         style.theme_use('clam')
-        style.configure("Treeview", background="#FFFFFF", foreground="#333333", rowheight=25, fieldbackground="#FFFFFF")
+        style.configure("Treeview", background="#001d3E", foreground="#DCDEDF", rowheight=25, fieldbackground="#001d3E")
         style.configure("Treeview.Heading", font=('Helvetica', 9, 'bold'), background="#E1E8ED")
-        style.map('Treeview', background=[('selected', '#007BFF')]) 
+        style.map('Treeview', background=[('selected', '#007BFF')], foreground=[('selected', 'white')]) 
         style.configure("TNotebook", background=self.bg_color)
         style.configure("TFrame", background=self.bg_color)
 
@@ -139,7 +139,7 @@ class RekomendasiLaptopApp:
         frame_input.pack(pady=15)
 
         def create_label(parent, text, row, col):
-            tk.Label(parent, text=text, bg=self.bg_color, font=('Helvetica', 9)).grid(row=row, column=col, sticky="w", pady=5, padx=5)
+            tk.Label(parent, text=text, bg=self.bg_color, fg="#DCDEDF", font=('Helvetica', 9, "bold")).grid(row=row, column=col, sticky="w", pady=5, padx=5)
 
         create_label(frame_input, "Merk:", 0, 0)
         self.entry_merk = ttk.Entry(frame_input)
