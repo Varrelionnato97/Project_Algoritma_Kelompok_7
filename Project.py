@@ -321,3 +321,15 @@ def action_delete(self):
             self.clear_form()
             messagebox.showinfo("Sukses", f"Data '{laptop_dihapus.merk} {laptop_dihapus.tipe}' dihapus!\n\n(Bisa dibatalkan dengan tombol Undo)")
 
+def action_undo(self):
+        if not self.stack_undo:
+            messagebox.showinfo("Info", "Tidak ada data untuk di-undo!")
+            return
+        
+        laptop_dikembalikan = self.stack_undo.pop()
+        self.data_laptop.append(laptop_dikembalikan)
+        self.data_laptop.sort(key=lambda x: x.id) 
+        
+        self.save_data()
+        self.refresh_table()
+        messagebox.showinfo("Sukses", f"Data '{laptop_dikembalikan.merk}' berhasil dipulihkan!")
