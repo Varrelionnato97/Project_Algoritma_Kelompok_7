@@ -113,7 +113,7 @@ class RekomendasiLaptopApp:
             for laptop in self.data_laptop:
                 writer.writerow([laptop.id, laptop.merk, laptop.tipe, laptop.ram, laptop.storage, laptop.harga, laptop.kategori])
     
-def setup_style(self):
+    def setup_style(self):
         style = ttk.Style()
         style.theme_use('clam')
         style.configure("Treeview", background="#FFFFFF", foreground="#333333", rowheight=25, fieldbackground="#FFFFFF")
@@ -122,7 +122,7 @@ def setup_style(self):
         style.configure("TNotebook", background=self.bg_color)
         style.configure("TFrame", background=self.bg_color)
 
-def setup_ui(self):
+    def setup_ui(self):
         tab_control = ttk.Notebook(self.root)
         self.tab_crud = ttk.Frame(tab_control)
         self.tab_rekomendasi = ttk.Frame(tab_control)
@@ -134,7 +134,7 @@ def setup_ui(self):
         self.setup_crud_tab()
         self.setup_rekomendasi_tab()
 
-def setup_crud_tab(self):
+    def setup_crud_tab(self):
         frame_input = tk.Frame(self.tab_crud, bg=self.bg_color)
         frame_input.pack(pady=15)
 
@@ -183,7 +183,7 @@ def setup_crud_tab(self):
         
         self.tree.bind("<<TreeviewSelect>>", self.on_table_click)
 
-def setup_rekomendasi_tab(self):
+    def setup_rekomendasi_tab(self):
         frame_filter = tk.Frame(self.tab_rekomendasi, bg=self.bg_color)
         frame_filter.pack(pady=20)
 
@@ -204,7 +204,7 @@ def setup_rekomendasi_tab(self):
             self.tree_rek.column(col, width=100, anchor="center")
         self.tree_rek.pack(pady=10, fill=tk.BOTH, expand=True, padx=10)
 
-def clear_form(self):
+    def clear_form(self):
         self.entry_merk.delete(0, tk.END)
         self.entry_tipe.delete(0, tk.END)
         self.entry_ram.delete(0, tk.END)
@@ -212,7 +212,7 @@ def clear_form(self):
         self.entry_harga.delete(0, tk.END)
         self.selected_laptop_id = None
 
-def on_table_click(self, event):
+    def on_table_click(self, event):
         selected_item = self.tree.selection()
         if not selected_item: return
         
@@ -228,7 +228,7 @@ def on_table_click(self, event):
         self.entry_harga.delete(0, tk.END); self.entry_harga.insert(0, harga_clean)
         self.kategori_var.set(row_data[6])
 
-def create_laptop(self, merk, tipe, ram, storage, harga, kategori):
+    def create_laptop(self, merk, tipe, ram, storage, harga, kategori):
         laptop_baru = Laptop(self.counter_id, merk, tipe, ram, storage, harga, kategori)
         self.data_laptop.append(laptop_baru)
         self.counter_id += 1
@@ -236,7 +236,7 @@ def create_laptop(self, merk, tipe, ram, storage, harga, kategori):
         self.save_data() # Simpan data setelah ditambah
         self.refresh_table()
 
-def action_create(self):
+    def action_create(self):
         merk = self.entry_merk.get().strip()
         tipe = self.entry_tipe.get().strip()
         ram = self.entry_ram.get().strip()
@@ -255,7 +255,7 @@ def action_create(self):
         except ValueError:
             messagebox.showerror("Error", "Gagal menyimpan! Input RAM, Storage, dan Harga wajib berupa angka murni (tanpa huruf/titik/koma).")
 
-def action_update(self):
+    def action_update(self):
         if self.selected_laptop_id is None:
             messagebox.showwarning("Peringatan", "Pilih data di tabel terlebih dahulu!")
             return
@@ -290,7 +290,7 @@ def action_update(self):
         except ValueError:
             messagebox.showerror("Error", "RAM, Storage, dan Harga wajib angka!")
             
-def action_delete(self):
+    def action_delete(self):
         selected_item = self.tree.selection()
         if not selected_item:
             messagebox.showwarning("Peringatan", "Klik/pilih salah satu data di tabel yang ingin dihapus terlebih dahulu!")
@@ -321,7 +321,7 @@ def action_delete(self):
             self.clear_form()
             messagebox.showinfo("Sukses", f"Data '{laptop_dihapus.merk} {laptop_dihapus.tipe}' dihapus!\n\n(Bisa dibatalkan dengan tombol Undo)")
 
-def action_undo(self):
+    def action_undo(self):
         if not self.stack_undo:
             messagebox.showinfo("Info", "Tidak ada data untuk di-undo!")
             return
@@ -334,14 +334,14 @@ def action_undo(self):
         self.refresh_table()
         messagebox.showinfo("Sukses", f"Data '{laptop_dikembalikan.merk}' berhasil dipulihkan!")
         
-def refresh_table(self):
+    def refresh_table(self):
         for row in self.tree.get_children():
             self.tree.delete(row)
         for laptop in self.data_laptop:
             harga_format = f"Rp {laptop.harga:,}"
             self.tree.insert("", tk.END, values=(laptop.id, laptop.merk, laptop.tipe, laptop.ram, laptop.storage, harga_format, laptop.kategori))
 
-def action_rekomendasi(self):
+    def action_rekomendasi(self):
         try:
             budget = int(self.entry_budget.get())
         except ValueError:
