@@ -340,3 +340,23 @@ def refresh_table(self):
         for laptop in self.data_laptop:
             harga_format = f"Rp {laptop.harga:,}"
             self.tree.insert("", tk.END, values=(laptop.id, laptop.merk, laptop.tipe, laptop.ram, laptop.storage, harga_format, laptop.kategori))
+
+def action_rekomendasi(self):
+        try:
+            budget = int(self.entry_budget.get())
+        except ValueError:
+            messagebox.showerror("Error", "Budget wajib angka!")
+            return
+
+        kebutuhan = self.rek_kategori_var.get()
+        syarat = self.kebutuhan_map[kebutuhan]
+
+        # MEMANGGIL FUNGSI LINEAR SEARCH & SELECTION SORT
+        hasil_awal = saring_linear_search(self.data_laptop, budget, kebutuhan, syarat)
+        hasil_akhir = urutkan_selection_sort(hasil_awal)
+
+        for row in self.tree_rek.get_children():
+            self.tree_rek.delete(row)
+        for skor, laptop in hasil_akhir:
+            harga_format = f"Rp {laptop.harga:,}"
+            self.tree_rek.insert("", tk.END, values=(skor, laptop.merk, laptop.tipe, laptop.ram, laptop.storage, harga_format))
