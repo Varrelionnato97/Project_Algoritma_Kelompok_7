@@ -333,3 +333,10 @@ def action_undo(self):
         self.save_data()
         self.refresh_table()
         messagebox.showinfo("Sukses", f"Data '{laptop_dikembalikan.merk}' berhasil dipulihkan!")
+        
+def refresh_table(self):
+        for row in self.tree.get_children():
+            self.tree.delete(row)
+        for laptop in self.data_laptop:
+            harga_format = f"Rp {laptop.harga:,}"
+            self.tree.insert("", tk.END, values=(laptop.id, laptop.merk, laptop.tipe, laptop.ram, laptop.storage, harga_format, laptop.kategori))
