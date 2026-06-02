@@ -360,3 +360,8 @@ def action_rekomendasi(self):
         for skor, laptop in hasil_akhir:
             harga_format = f"Rp {laptop.harga:,}"
             self.tree_rek.insert("", tk.END, values=(skor, laptop.merk, laptop.tipe, laptop.ram, laptop.storage, harga_format))
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = RekomendasiLaptopApp(root)
+    root.mainloop()
