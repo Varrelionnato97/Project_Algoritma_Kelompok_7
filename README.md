@@ -36,8 +36,5 @@ Aplikasi ini **tidak memerlukan instalasi library pihak ketiga (no third-party d
 
 ## Cara Menginstal dan Menjalankan Proyek
 
-### 1. Clone Repositori
-Buka terminal atau Command Prompt (CMD), lalu jalankan perintah berikut:
-```bash
-git clone [https://github.com/Varrelionnato97/Project_Algoritma_Kelompok_7.git](https://github.com/Varrelionnato97/Project_Algoritma_Kelompok_7.git)
-cd Project_Algoritma_Kelompok_7
+Cukup clone Repository menggunakan link berikut, kemudian jalankan di Visual Studio Code
+[https://github.com/Varrelionnato97/Project_Algoritma_Kelompok_7.git](https://github.com/Varrelionnato97/Project_Algoritma_Kelompok_7.git)
