@@ -1,11 +1,11 @@
-# 💻 Sistem Rekomendasi Laptop Berdasarkan Budget & Kebutuhan
+# Sistem Rekomendasi Laptop Berdasarkan Budget & Kebutuhan
 ### Tugas Kelompok 7 - Proyek Algoritma dan Struktur Data
 
 Aplikasi berbasis komputer ini dibuat untuk membantu Anda mengelola data laptop sekaligus mencari **rekomendasi laptop terbaik** secara otomatis. Aplikasi ini sangat cocok untuk orang yang bingung memilih laptop karena sistem akan mencarikan laptop yang pas sesuai dengan **isi dompet (budget)** dan **tujuan penggunaan** Anda (apakah untuk kerja kantoran, main game, atau desain grafis).
 
 Proyek ini merupakan tugas proyek dari **Algoritma dan Struktur Data** memanfaatkan database lokal berbasis file CSV.
 
-## 🚀 Fitur Utama
+## Fitur Utama
 
 1. **Manajemen Data Laptop (CRUD):**
    * **Create (Tambah):** Memasukkan data laptop baru lengkap dengan Merk, Tipe, RAM, Storage, Harga, dan Kategori.
@@ -16,7 +16,7 @@ Proyek ini merupakan tugas proyek dari **Algoritma dan Struktur Data** memanfaat
 3. **Sistem Rekomendasi Pintar:** Menyaring laptop yang sesuai dengan isi dompet pengguna dan melakukan penilaian otomatis (*scoring*) terhadap spesifikasi laptop berdasarkan kategori kebutuhan (Office, Gaming, Desain).
 4. **Penyimpanan Permanen (Persistensi Data):** Semua data otomatis tersimpan di dalam file `data_laptop.csv`. Jika file ini belum ada di komputer, aplikasi akan otomatis membuatkannya dengan menyertakan beberapa data bawaan (*default*).
 
-## 🧠 Algoritma & Struktur Data yang Diterapkan
+## Algoritma & Struktur Data yang Diterapkan
 
 Di dalam proyek Kelompok 7 ini, kami menerapkan beberapa konsep dasar ilmu komputer:
 
@@ -26,7 +26,7 @@ Di dalam proyek Kelompok 7 ini, kami menerapkan beberapa konsep dasar ilmu kompu
 * **Selection Sort:** Berfungsi mengurutkan hasil rekomendasi laptop dari nilai skor tertinggi ke terendah (*descending*), sehingga laptop yang paling direkomendasikan akan muncul di baris paling atas tabel.
 * **Stack (LIFO - Last In, First Out):** Diterapkan pada mekanisme tombol *Undo*. Laptop yang dihapus akan dimasukkan (*push*) ke tumpukan memori sementara, dan dikeluarkan kembali (*pop*) ke tabel utama saat membatalkan penghapusan.
 
-## 🛠️ Teknologi & Prasyarat
+## Teknologi & Prasyarat
 
 * **Bahasa Pemrograman:** Python 3.x
 * **Antarmuka (GUI):** Tkinter & TTK (Theme Widget)
@@ -34,7 +34,7 @@ Di dalam proyek Kelompok 7 ini, kami menerapkan beberapa konsep dasar ilmu kompu
 
 Aplikasi ini **tidak memerlukan instalasi library pihak ketiga (no third-party dependencies)** karena menggunakan modul bawaan Python murni.
 
-## 📦 Cara Menginstal dan Menjalankan Proyek
+## Cara Menginstal dan Menjalankan Proyek
 
 ### 1. Clone Repositori
 Buka terminal atau Command Prompt (CMD), lalu jalankan perintah berikut:
